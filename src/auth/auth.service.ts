@@ -11,8 +11,10 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  async validate(email: string, password: string) {
+  async validateUser(email: string, password: string) {
+    console.log('ValidateUser: ' + email, password);
     const user = await this.userService.findOne(email);
+    console.log(user);
 
     const passwordIsMatch = await argon2.verify(user.password, password);
 
